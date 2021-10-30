@@ -1,0 +1,17 @@
+
+    	XYZ Inventory
+    phone No.04211223344
+    	LHR-54401
+    =================================
+    
+    Bill No.243256
+    Date:   17/10/21
+    Sales Person Qurban
+    Cashier      Qurban
+    =================================
+    Product Name Qty Price
+    =================================
+            
+ 	Lux  L1000001 5 340
+ 	lifebuoy shampoo  L1000011 1 98
+ 	Total Sum =438

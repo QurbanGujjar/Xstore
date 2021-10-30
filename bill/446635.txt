@@ -1,0 +1,16 @@
+
+    	XYZ Inventory
+    phone No.04211223344
+    	LHR-54401
+    =================================
+    
+    Bill No.446635
+    Date:   22/10/21
+    Sales Person Qurban
+    Cashier      Qurban
+    =================================
+    Product Name Qty Price
+    =================================
+            
+ 	gujjar  G1000001 5 290
+ 	Total Sum =290

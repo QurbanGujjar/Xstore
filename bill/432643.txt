@@ -1,0 +1,15 @@
+
+    	XYZ Inventory
+    phone No.04211223344
+    	LHR-54401
+    =================================
+    
+    Bill No.432643
+    Date:   21/09/21
+    Sales Person Qurban
+    =================================
+    Product Name Qty Price
+    =================================
+            
+ 	Lux  L1000001 1 68
+ 	Total Sum =68

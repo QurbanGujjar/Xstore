@@ -1,0 +1,17 @@
+
+    	XYZ Inventory
+    phone No.04211223344
+    	LHR-54401
+    =================================
+    
+    Bill No.254738
+    Date:   25/09/21
+    Sales Person Qurban
+    Cashier      Qurban
+    =================================
+    Product Name Qty Price
+    =================================
+            
+ 	lifebuoy soap  L1000021 1 58
+ 	lifebuoy shampoo  L1000011 5 490
+ 	Total Sum =548
