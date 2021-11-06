@@ -49,8 +49,8 @@ class BO_window_Class:
         self.trans_type=StringVar()   
         self.data=[]
     def inventry(self):
-        # self.Outer_frame.destroy()
-        # imc.inventryManage(self,self.root)  
+        self.Outer_frame.destroy()
+        imc.inventryManage(self,self.root)  
         pass  
     def Btn_Menu_frame(self):
         

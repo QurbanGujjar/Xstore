@@ -57,27 +57,28 @@ class inventryManageClass:
         cmb_status.place(x=self.left_x,y=300,width=180)
         cmb_status.current(0)
          #====================buttons=======
-        btn_add=Button(left_fram,text="Save",command=self.add,font=("goudy old style",self.label_size),bg="#2196f3",fg="white",cursor="hand2").place(x=10,y=380,width=100,height=35)
-        btn_update=Button(left_fram,text="Update",command=self.update,font=("goudy old style",self.label_size),bg="#4caf50",fg="white",cursor="hand2").place(x=120,y=380,width=100,height=35)
-        btn_delete=Button(left_fram,text="Delete",command=self.delete,font=("goudy old style",self.label_size),bg="#f44336",fg="white",cursor="hand2").place(x=230,y=380,width=100,height=35)
-        btn_clear=Button(left_fram,text="Clear",command=self.clear,font=("goudy old style",self.label_size),bg="#607d8b",fg="white",cursor="hand2").place(x=340,y=380,width=100,height=35)
+         
+        btn_add=Button(left_fram,text="Save",command=lambda:inventryManageClass.add(self),font=("goudy old style",self.label_size),bg="#2196f3",fg="white",cursor="hand2").place(x=10,y=380,width=100,height=35)
+        btn_update=Button(left_fram,text="Update",command=lambda:inventryManageClass.update(self),font=("goudy old style",self.label_size),bg="#4caf50",fg="white",cursor="hand2").place(x=120,y=380,width=100,height=35)
+        btn_delete=Button(left_fram,text="Delete",command=lambda:inventryManageClass.delete(self),font=("goudy old style",self.label_size),bg="#f44336",fg="white",cursor="hand2").place(x=230,y=380,width=100,height=35)
+        btn_clear=Button(left_fram,text="Clear",command=lambda:inventryManageClass.clear(self),font=("goudy old style",self.label_size),bg="#607d8b",fg="white",cursor="hand2").place(x=340,y=380,width=100,height=35)
         
 #==================Right Frame for Products Details=========
         right_fram=Frame(self.Main_frame,bd=2,relief=RIDGE,bg="white")
-        right_fram.place(x=530,y=5,width=550,height=480)
+        right_fram.place(x=530,y=5,width=800,height=480)
         #===============Search Frame==========
         SearchFrame=LabelFrame(right_fram,text="Search Products",font=("goudy old style",12,"bold"),bd=2,relief=RIDGE,bg="white")
-        SearchFrame.place(x=5,y=5,width=530,height=70)
+        SearchFrame.place(x=5,y=5,width=780,height=70)
         #============Options======
         cmb_search=ttk.Combobox(SearchFrame,textvariable=self.var_searchby,values=("Select","Caegory","Supplier","Name","Price","QTY","Status"),state="readonly",justify=CENTER,font=("goudy old style",12,"bold"))
         cmb_search.place(x=10,y=10,width=150,height=30)
         cmb_search.current(0)
 
         txt_search=Entry(SearchFrame,textvariable=self.var_searchtxt,font=("goudy old style",15),bg="lightyellow").place(x=170,y=10,width=180,height=30)
-        btn_search=Button(SearchFrame,text="Search",command=self.search,font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=360,y=10,width=160,height=30)
+        btn_search=Button(SearchFrame,text="Search",command=lambda:inventryManageClass.search(self),font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=360,y=10,width=160,height=30)
         # =========================================== table===================
         sup_frame=Frame(right_fram,bd=3,relief=RIDGE)
-        sup_frame.place(x=5,y=90,width=530,height=380)
+        sup_frame.place(x=5,y=90,width=780,height=380)
         scrolly=Scrollbar(sup_frame,orient=VERTICAL)
         scrollx=Scrollbar(sup_frame,orient=HORIZONTAL)
         self.ProductsTable=ttk.Treeview(sup_frame,columns=("pid","category","supplier","name","price","qty","Tprice","status"),yscrollcommand=scrolly.set,xscrollcommand=scrolly.set)
@@ -106,8 +107,8 @@ class inventryManageClass:
         self.ProductsTable.column("status",width=60)
         self.ProductsTable["show"]="headings"
         self.ProductsTable.pack(fill=BOTH,expand=1)
-        self.ProductsTable.bind("<ButtonRelease-1>",self.get_data)  
-        self.show()
+        self.ProductsTable.bind("<ButtonRelease-1>",lambda event:inventryManageClass.get_data(self))  
+        inventryManageClass.show(self)
         
         
 #================================Functions=====================================================================================
@@ -167,7 +168,7 @@ class inventryManageClass:
                     ))    
                     con.commit()
                     messagebox.showinfo("Success","Product Added Successfully !",parent=self.root)
-                    self.show()
+                    inventryManageClass.show(self)
                     # self.clear()
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to : {str(ex)}",parent=self.root)
@@ -215,7 +216,7 @@ class inventryManageClass:
                     ))    
                     con.commit()
                     messagebox.showinfo("Success","Product Updated Successfully !",parent=self.root)
-                    self.show()
+                    inventryManageClass.show()
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to : {str(ex)}",parent=self.root)
      #=======================Delete gfunction==================
@@ -236,13 +237,13 @@ class inventryManageClass:
                         cur.execute("delete from products where pid=?",(self.var_pid.get(),))
                         con.commit()
                         messagebox.showinfo("Delete","Product Deleted Successfully",parent=self.root)
-                        # self.show()
-                        self.clear()
+                        # inventryManageClass.show()
+                        inventryManageClass.clear()
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to :{str(ex)}",parent=self.root)  
         
 #==================Update Function ============================
-    def get_data(self,ev):
+    def get_data(self):
         f=self.ProductsTable.focus()
         content=(self.ProductsTable.item(f))
         row=content['values']
@@ -265,7 +266,7 @@ class inventryManageClass:
         self.var_searchby.set("Select")
         self.var_searchtxt.set("")
         self.var_status.set("Active"),
-        self.show()        
+        inventryManageClass.show(self)        
 #========================  Search Function======================
       
     def search(self):
